@@ -1,4 +1,3 @@
-<?php
 
 //debugging
 error_reporting(-1);
@@ -17,14 +16,15 @@ imageantialias($image, true);
 
 // define posible colours for the circle
 $colours = array(
-    imagecolorallocate($image, 241, 143, 0) => "orange",
-    imagecolorallocate($image, 128, 186, 39) => "green",
-    imagecolorallocate($image, 13, 147, 210) => "blue",
-    imagecolorallocate($image, 231, 30, 108) => "pink"
+    "orange" => imagecolorallocate($image, 241, 143, 0),
+    "green" => imagecolorallocate($image, 128, 186, 39),
+    "blue" => imagecolorallocate($image, 13, 147, 210),
+    "pink" => imagecolorallocate($image, 231, 30, 108)
 );
+$circle_col = isset($_GET["c"]) ? $colours[$_GET["c"]] : $colours(array_rand($colours));
 
 // draw the circle with a random color
-imagefilledellipse($image, $radius, $radius, $size - 1, $size - 1, array_rand($colours));
+imagefilledellipse($image, $radius, $radius, $size - 1, $size - 1, $circle_col);
 
 // write the text on the circle.
 $font = "VAGRounded-Light";
