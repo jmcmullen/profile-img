@@ -1,3 +1,4 @@
+<?php
 
 //debugging
 error_reporting(-1);
