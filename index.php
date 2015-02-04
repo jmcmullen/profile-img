@@ -1,12 +1,8 @@
+
 <?php
 
-// debugging
-error_reporting(-1);
-ini_set('display_errors', 1);
-
 // initalize variables
-$names = isset($_GET["n"]) ? explode(" ", $_GET["n"]) : explode(" ", "? ?");
-$name = strtoupper(substr($names[0], 0, 1) . substr($names[1], 0, 1));
+$name = isset($_GET["n"]) ? $_GET["n"] : "??";
 $radius = isset($_GET["r"]) ? $_GET["r"] : 150;
 $size = $radius * 2;
 
@@ -25,17 +21,17 @@ $colours = array(
 );
 
 // draw a circle with set colour otherwise pick a random one
-$circle_col = isset($_GET["c"]) ? $colours[$_GET["c"]] : $colours(array_rand($colours));
+$circle_col = isset($_GET["c"]) ? $colours[$_GET["c"]] : $colours[array_rand($colours)];
 imagefilledellipse($image, $radius, $radius, $size - 1, $size - 1, $circle_col);
 
 // write the text on the center of the circle.
 $font = "VAGRounded-Light";
 $font_col = imagecolorallocate($image, 255, 255, 255);
-$text_box = imagettfbbox($radius, 0, $font, $name);
+$text_box = imagettfbbox($radius / 1.5, 0, $font, $name);
 $text_width = $text_box[2] - $text_box[0];
 $x = ($radius) - ($text_width / 2);
-$y = $radius + $radius / 2.2;
-imagettftext($image, $radius, 0, $x, $y, $font_col, $font, $name);
+$y = $radius * 1.35;
+imagettftext($image, $radius / 1.5, 0, $x, $y, $font_col, $font, $name);
 
 // remove the black backround
 $transparent = imagecolorallocate($image, 0, 0, 0);
@@ -46,5 +42,3 @@ header("Content-type: image/png");
 imagepng($image);
 
 imagedestroy($image);
-
-?>
