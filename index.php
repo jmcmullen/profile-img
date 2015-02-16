@@ -29,9 +29,9 @@ $font = "VAGRounded-Light";
 $font_col = imagecolorallocate($image, 255, 255, 255);
 $text_box = imagettfbbox($radius / 1.5, 0, $font, $name);
 $text_width = $text_box[2] - $text_box[0];
-$x = ($radius) - ($text_width / 2);
-$y = $radius * 1.35;
-imagettftext($image, $radius / 1.5, 0, $x, $y, $font_col, $font, $name);
+$x = $radius - ($text_width / 1.6);
+$y = $radius * 1.38;
+imagettftext($image, $radius / 1.3, 0, $x, $y, $font_col, $font, $name);
 
 // remove the black backround
 $transparent = imagecolorallocate($image, 0, 0, 0);
