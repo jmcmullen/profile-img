@@ -1,5 +1,8 @@
-
 <?php
+
+// debugging
+error_reporting(-1);
+ini_set('display_errors', 1);
 
 // initalize variables
 $name = isset($_GET["n"]) ? $_GET["n"] : "??";
@@ -42,3 +45,5 @@ header("Content-type: image/png");
 imagepng($image);
 
 imagedestroy($image);
+
+?>
