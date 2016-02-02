@@ -17,10 +17,12 @@ imageantialias($image, true);
 
 // define posible colours for the circle
 $colours = array(
-    "orange" => imagecolorallocate($image, 241, 143, 0),
-    "green" => imagecolorallocate($image, 128, 186, 39),
-    "blue" => imagecolorallocate($image, 13, 147, 210),
-    "pink" => imagecolorallocate($image, 231, 30, 108)
+    "green" => imagecolorallocate($image, 82, 188, 135),
+    "yellow" => imagecolorallocate($image, 255, 206, 50),
+    "blue" => imagecolorallocate($image, 66, 157, 208),
+    "pink" => imagecolorallocate($image, 239, 75, 121),
+    "purple" => imagecolorallocate($image, 159, 72, 150),
+    "dark-blue" => imagecolorallocate($image, 69, 74, 156)
 );
 
 // draw a circle with set colour otherwise pick a random one
@@ -28,7 +30,7 @@ $circle_col = isset($_GET["c"]) ? $colours[$_GET["c"]] : $colours[array_rand($co
 imagefilledellipse($image, $radius, $radius, $size - 1, $size - 1, $circle_col);
 
 // write the text on the center of the circle.
-$font = "VAGRounded-Light";
+$font = "Lato-Thin";
 $font_col = imagecolorallocate($image, 255, 255, 255);
 $text_box = imagettfbbox($radius / 1.5, 0, $font, $name);
 $text_width = $text_box[2] - $text_box[0];
@@ -41,6 +43,7 @@ $transparent = imagecolorallocate($image, 0, 0, 0);
 imagecolortransparent($image, $transparent);
 
 // output the picture
+imageantialias($image, true);
 header("Content-type: image/png");
 imagepng($image);
 
